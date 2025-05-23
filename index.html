@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Музыкальный плеер</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Martian+Mono:wght@100..800&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+  <div class="app">
+    <div class="track-wrapper">
+      <img class="wrapper-img" src="img/saypink!.jpg" alt="Обложка трека">
+    </div>
+    <!-- Название + автор -->
+    <div class="track-info">
+      <h2 class="track-title">
+        Типа я и типа ты</h2>
+      <h3 class="track-author">saypink!</h3>
+    </div>
+    <div class="custom-slider">
+      <span class="slider-start-text">0:00</span>
+      <div class="slider-track">
+        <div class="slider-progress" style="width: 0%"></div>
+        <div class="slider-thumb"></div>
+      </div>
+      <span class="slider-end-text">3:04</span>
+    </div>
+    <!-- Навигационные кнопки -->
+    <div class="menu-bar">
+      <!-- Прошлый трек -->
+      <svg class="last-track" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="wqhit"
+        stroke="#9a9a9a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="19 20 9 12 19 4 19 20"></polygon>
+        <line x1="5" x2="5" y1="19" y2="5"></line>
+      </svg>
+      <!-- Pause -->
+      <div class="play-track-bg">
+        <svg class="play-track" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"
+          fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="6 3 20 12 6 21 6 3"></polygon>
+        </svg>
+        <!-- Play -->
+        <svg class="pause-track" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="14" y="4" width="4" height="16" rx="1"></rect>
+          <rect x="6" y="4" width="4" height="16" rx="1"></rect>
+        </svg>
+      </div>
+      <!-- Следующий трек -->
+      <svg class="next-track" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="none"
+        stroke="#9a9a9a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="5 4 15 12 5 20 5 4"></polygon>
+        <line x1="19" x2="19" y1="5" y2="19"></line>
+      </svg>
+
+    </div>
+
+  </div>
+  <script src="script.js"></script>
+</body>
+
+</html>
