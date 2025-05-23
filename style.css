@@ -40,7 +40,7 @@ body {
   background: #121212;
   border-radius: 10px;
   height: max-content;
-  padding: 30px;
+  padding: 25px;
 }
 .track-wrapper {
   max-width: 400px;
@@ -57,11 +57,12 @@ body {
 }
 
 .menu-bar {
-  max-width: 350px;
+  max-width: 400px;
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 30px;
 }
 .play-track {
   cursor: pointer;
@@ -101,6 +102,7 @@ body {
 }
 .custom-slider {
   display: flex;
+  max-width: 400px;
   width: 100%;
   justify-content: space-between;
   align-items: center;
@@ -136,6 +138,77 @@ body {
   border-radius: 50%;
   touch-action: none;
 }
+
+.volume-control {
+  display: flex;
+  max-width: 400px;
+  width: 100%;
+  gap: 10px;
+  justify-content: end;
+  align-items: center;
+  padding: 10px 0;
+}
+
+.volume-track {
+  position: relative;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+  cursor: pointer;
+  width: 25%;
+}
+
+.volume-progress {
+  position: absolute;
+  height: 100%;
+  background: #1db954;
+  border-radius: 2px;
+  width: 100%;
+}
+
+.volume-thumb {
+  position: absolute;
+  left: 0%;
+  top: 50%;
+  transform: translate(0, -50%);
+  width: 20px;
+  height: 20px;
+  background: white;
+  border-radius: 50%;
+  touch-action: none;
+}
+.volume-icon-100 {
+  display: none;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+.volume-icon:hover {
+  stroke: #1db954;
+}
+.volume-icon-0 {
+  display: none;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+.volume-icon-60{
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+.volume-icon-60:hover{
+  stroke: #1db954;
+}
+.volume-icon-0:hover {
+  stroke: #1db954;
+}
+.volume-icon-30 {
+  display: none;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+.volume-icon-30:hover {
+  stroke: #1db954;
+}
+
 
 @media (max-width: 768px) {
   .app {
