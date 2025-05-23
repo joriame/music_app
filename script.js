@@ -3,6 +3,7 @@ const playBtn = document.querySelector(".play-track");
 const pauseBtn = document.querySelector(".pause-track");
 const nextBtn = document.querySelector(".next-track");
 const prevBtn = document.querySelector(".last-track");
+const repeatBtn = document.querySelector(".repeat-btn");
 
 // Прогресс-бар
 const progressBar = document.querySelector(".slider-progress");
@@ -68,7 +69,7 @@ audio.preload = "metadata";
 // Инициализация
 function initPlayer() {
   pauseBtn.style.display = "none";
-  audio.volume = 0.5;
+  audio.volume = 0.2;
   updateVolumeBar();
   updateVolumeIcons();
   loadTrack(currentTrackIndex);
@@ -240,12 +241,15 @@ function formatTime(sec) {
   const seconds = Math.floor(sec % 60);
   return `${min}:${seconds < 10 ? "0" : ""}${seconds}`;
 }
-
+function repeatTrack() {
+  audio.loop = !audio.loop;
+  repeatBtn.classList.toggle("repeat-active");
+}
 // События кнопок
 playBtn.addEventListener("click", togglePlay);
 pauseBtn.addEventListener("click", togglePlay);
 nextBtn.addEventListener("click", nextTrack);
 prevBtn.addEventListener("click", prevTrack);
-
+repeatBtn.addEventListener("click", repeatTrack);
 // Инициализация плеера
 initPlayer();

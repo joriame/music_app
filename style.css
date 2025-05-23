@@ -84,13 +84,24 @@ body {
   display: none;
   cursor: pointer;
 }
-
+.repeat-btn {
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+.repeat-btn:hover {
+  transform: scale(1.05);
+  stroke: #1fb755;
+}
+.repeat-active{
+  stroke: #1fb755;
+}
 .last-track,
 .next-track {
   transition: 0.3s ease;
 }
 .last-track:hover,
 .next-track:hover {
+  transform: scale(1.05);
   stroke: #fff;
   cursor: pointer;
 }
@@ -250,4 +261,3 @@ body {
     height: 15px;
   }
 }
-
