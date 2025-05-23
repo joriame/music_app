@@ -136,6 +136,7 @@ audio.addEventListener("loadedmetadata", () => {
 });
 audio.addEventListener("ended", nextTrack);
 
+// --- ПРОГРЕСС-БАР: мышь и тач ---
 progressTrack.addEventListener("click", (e) => {
   const rect = progressTrack.getBoundingClientRect();
   const clickPosition = e.clientX - rect.left;
@@ -147,18 +148,36 @@ progressTrack.addEventListener("click", (e) => {
 
 progressTrack.addEventListener("mousedown", (e) => {
   isSeeking = true;
-  seek(e);
+  seek(e.clientX);
 });
 document.addEventListener("mousemove", (e) => {
-  if (isSeeking) seek(e);
+  if (isSeeking) seek(e.clientX);
 });
 document.addEventListener("mouseup", () => {
-  if (isSeeking) isSeeking = false;
+  isSeeking = false;
 });
-function seek(e) {
+
+// Touch события для прогресс-бара
+progressTrack.addEventListener("touchstart", (e) => {
+  isSeeking = true;
+  const touch = e.touches[0];
+  seek(touch.clientX);
+});
+document.addEventListener("touchmove", (e) => {
+  if (isSeeking) {
+    const touch = e.touches[0];
+    seek(touch.clientX);
+  }
+});
+document.addEventListener("touchend", () => {
+  isSeeking = false;
+});
+
+function seek(clientX) {
   const rect = progressTrack.getBoundingClientRect();
-  const x = e.clientX - rect.left;
-  const percent = Math.min(Math.max(x / progressTrack.offsetWidth, 0), 1);
+  let x = clientX - rect.left;
+  x = Math.min(Math.max(x, 0), rect.width);
+  const percent = x / rect.width;
   if (audio.duration) {
     audio.currentTime = percent * audio.duration;
     progressBar.style.width = `${percent * 100}%`;
@@ -166,7 +185,7 @@ function seek(e) {
   }
 }
 
-// Громкость
+// --- ГРОМКОСТЬ: мышь и тач ---
 function updateVolumeBar() {
   const percent = audio.volume * 100;
   volumeBar.style.width = `${percent}%`;
@@ -218,21 +237,42 @@ volumeTrack.addEventListener("click", (e) => {
   updateVolumeBar();
   updateVolumeIcons();
 });
+
 volumeThumb.addEventListener("mousedown", () => {
   isVolumeDragging = true;
 });
 document.addEventListener("mousemove", (e) => {
   if (!isVolumeDragging) return;
-  const rect = volumeTrack.getBoundingClientRect();
-  const x = e.clientX - rect.left;
-  const percent = Math.min(Math.max(x / volumeTrack.offsetWidth, 0), 1);
-  audio.volume = percent;
-  updateVolumeBar();
-  updateVolumeIcons();
+  updateVolume(e.clientX);
 });
 document.addEventListener("mouseup", () => {
   isVolumeDragging = false;
 });
+
+// Touch события для громкости
+volumeThumb.addEventListener("touchstart", (e) => {
+  isVolumeDragging = true;
+  const touch = e.touches[0];
+  updateVolume(touch.clientX);
+});
+document.addEventListener("touchmove", (e) => {
+  if (!isVolumeDragging) return;
+  const touch = e.touches[0];
+  updateVolume(touch.clientX);
+});
+document.addEventListener("touchend", () => {
+  isVolumeDragging = false;
+});
+
+function updateVolume(clientX) {
+  const rect = volumeTrack.getBoundingClientRect();
+  let x = clientX - rect.left;
+  x = Math.min(Math.max(x, 0), rect.width);
+  const percent = x / rect.width;
+  audio.volume = percent;
+  updateVolumeBar();
+  updateVolumeIcons();
+}
 
 // Форматирование времени
 function formatTime(sec) {
@@ -241,15 +281,18 @@ function formatTime(sec) {
   const seconds = Math.floor(sec % 60);
   return `${min}:${seconds < 10 ? "0" : ""}${seconds}`;
 }
+
 function repeatTrack() {
   audio.loop = !audio.loop;
   repeatBtn.classList.toggle("repeat-active");
 }
+
 // События кнопок
 playBtn.addEventListener("click", togglePlay);
 pauseBtn.addEventListener("click", togglePlay);
 nextBtn.addEventListener("click", nextTrack);
 prevBtn.addEventListener("click", prevTrack);
 repeatBtn.addEventListener("click", repeatTrack);
+
 // Инициализация плеера
 initPlayer();

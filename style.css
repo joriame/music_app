@@ -11,6 +11,7 @@ body {
   min-height: 100dvh;
   font-family: "Montserrat";
   padding: 20px;
+  background: #000;
 }
 
 .track-info {
@@ -32,7 +33,7 @@ body {
 }
 .app {
   display: flex;
-  justify-content: start;
+  justify-content: center;
   align-items: center;
   flex-direction: column;
   max-width: 550px;
@@ -92,7 +93,7 @@ body {
   transform: scale(1.05);
   stroke: #1fb755;
 }
-.repeat-active{
+.repeat-active {
   stroke: #1fb755;
 }
 .last-track,
@@ -174,7 +175,6 @@ body {
   height: 20px;
   background: white;
   border-radius: 50%;
-  touch-action: none;
 }
 .volume-icon-100 {
   display: none;
@@ -209,9 +209,13 @@ body {
 }
 
 @media (max-width: 768px) {
+  body {
+    padding: 0;
+  }
   .app {
+    height: 100dvh;
+    border-radius: 0;
     margin: 0 auto;
-    padding: 15px;
   }
 
   .track-wrapper {
@@ -239,9 +243,6 @@ body {
 }
 
 @media (max-width: 480px) {
-  .app {
-    padding: 25px;
-  }
   .track-title {
     font-size: 20px;
   }
