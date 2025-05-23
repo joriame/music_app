@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Martian+Mono:wght@100..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Rampart+One&family=Stick&display=swap');
 * {
   margin: 0;
   padding: 0;
@@ -12,6 +13,23 @@ body {
   font-family: "Montserrat";
   padding: 20px;
   background: #000;
+  position: relative;
+}
+.text {
+  position: absolute;
+  color: #fff;
+  z-index: 0;
+  font-size: 70px;
+  font-family: 'Stick';
+  font-weight: bold;
+  top: 10%;
+  left: 10%;
+  text-shadow: 0px 0px 5px #fff;
+  cursor: pointer;
+  transition: .3s ease-in-out;
+}
+.text:hover{
+  text-shadow: 0px 0px 10px #fff;
 }
 
 .track-info {
@@ -32,6 +50,7 @@ body {
   font-size: 20px;
 }
 .app {
+  z-index: 1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -42,6 +61,7 @@ body {
   border-radius: 10px;
   height: max-content;
   padding: 25px;
+  position: relative;
 }
 .track-wrapper {
   max-width: 400px;
